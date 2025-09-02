@@ -862,3 +862,35 @@ activeLinkStyle.textContent = `
     }
 `;
 document.head.appendChild(activeLinkStyle);
+
+// Scroll to Top Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollBtn = document.getElementById("scrollToTop");
+    
+    if (scrollBtn) {
+        // Show button when scrolled down 200px
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                scrollBtn.classList.add('show');
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.classList.remove('show');
+                scrollBtn.style.display = "none";
+            }
+        });
+
+        // Smooth scroll to top on click
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+            
+            // Add click animation
+            scrollBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                scrollBtn.style.transform = '';
+            }, 150);
+        });
+    }
+});
